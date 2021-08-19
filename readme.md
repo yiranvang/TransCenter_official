@@ -148,44 +148,43 @@ Please put all the pretrained models to *./model_zoo* .
 - Pretrained on coco person dataset:
 ```
 cd TransCenter_official
-python -m torch.distributed.launch --nproc_per_node=4 --use_env ./training/transcenter/main_coco_tracking.py --output_dir=./output/whole_coco --batch_size=4 --num_workers=20 --resume=./model_zoo/r50_deformable_detr-checkpoint.pth --pre_hm --tracking --data_dir=/scratch2/scorpio/yixu/cocodataset/ --epochs=11
+python -m torch.distributed.launch --nproc_per_node=4 --use_env ./training/transcenter/main_coco_tracking.py --output_dir=./output/whole_coco --batch_size=4 --num_workers=20 --resume=./model_zoo/r50_deformable_detr-checkpoint.pth --pre_hm --tracking --data_dir=PathToCoCoDataset
 ```
 - Pretrained on CrowdHuman dataset:
 ```
 cd TransCenter_official
-python -m torch.distributed.launch --nproc_per_node=4 --use_env ./training/transcenter/main_crowdHuman_tracking.py --output_dir=./output/whole_ch_from_COCO --batch_size=4 --num_workers=20 --resume=./model_zoo/coco_pretrained.pth --pre_hm --tracking --data_dir=/scratch2/scorpio/yixu/crowd_human/ --epochs=49
+python -m torch.distributed.launch --nproc_per_node=4 --use_env ./training/transcenter/main_crowdHuman_tracking.py --output_dir=./output/whole_ch_from_COCO --batch_size=4 --num_workers=20 --resume=./model_zoo/coco_pretrained.pth --pre_hm --tracking --data_dir=PathToCrowdHumanDataset
 ```
 
 - Train MOT17 from CoCo pretrained model:
 ```
 cd TransCenter_official
-python -m torch.distributed.launch --nproc_per_node=2 --use_env ./training/transcenter/main_mot17_tracking.py --output_dir=./output/whole_MOT17_from_COCO --batch_size=2 --num_workers=20 --resume=./model_zoo/coco_pretrained.pth --pre_hm --tracking  --same_aug_pre --image_blur_aug --data_dir=/scratch/scorpio/yixu/rawdata/MOT17/ --epochs=33
+python -m torch.distributed.launch --nproc_per_node=2 --use_env ./training/transcenter/main_mot17_tracking.py --output_dir=./output/whole_MOT17_from_COCO --batch_size=2 --num_workers=20 --resume=./model_zoo/coco_pretrained.pth --pre_hm --tracking  --same_aug_pre --image_blur_aug --data_dir=PathToMOT17dataset
 ```
 
 - Train MOT17 from CrowdHuman pretrained model:
 ```
 cd TransCenter_official
-python -m torch.distributed.launch --nproc_per_node=2 --use_env ./training/transcenter/main_mot17_tracking.py --output_dir=./output/whole_MOT17_from_CH --batch_size=2 --num_workers=20 --resume=./model_zoo/CH_pretrained.pth --pre_hm --tracking  --same_aug_pre --image_blur_aug --data_dir=/scratch/scorpio/yixu/rawdata/MOT17/ --epochs=23
+python -m torch.distributed.launch --nproc_per_node=2 --use_env ./training/transcenter/main_mot17_tracking.py --output_dir=./output/whole_MOT17_from_CH --batch_size=2 --num_workers=20 --resume=./model_zoo/CH_pretrained.pth --pre_hm --tracking  --same_aug_pre --image_blur_aug --data_dir=PathToMOT17dataset
 ```
 
 - Train MOT20 from CoCo pretrained model:
 ```
 cd TransCenter_official
-python -m torch.distributed.launch --nproc_per_node=2 --use_env ./training/transcenter/main_mot20_tracking.py --output_dir=./output/whole_MOT20_from_COCO --batch_size=2 --num_workers=20 --resume=./model_zoo/coco_pretrained.pth --pre_hm --tracking  --same_aug_pre --image_blur_aug --not_max_crop --data_dir=/scratch/scorpio/yixu/rawdata/MOT20/ --epochs=19
+python -m torch.distributed.launch --nproc_per_node=2 --use_env ./training/transcenter/main_mot20_tracking.py --output_dir=./output/whole_MOT20_from_COCO --batch_size=2 --num_workers=20 --resume=./model_zoo/coco_pretrained.pth --pre_hm --tracking  --same_aug_pre --image_blur_aug --not_max_crop --data_dir=PathToMOT20dataset
 ```
 
 - Train MOT20 from CrowdHuman pretrained model:
 ```
 cd TransCenter_official
-python -m torch.distributed.launch --nproc_per_node=2 --use_env ./training/transcenter/main_mot20_tracking.py --output_dir=./output/whole_MOT20_from_CH --batch_size=2 --num_workers=20 --resume=./model_zoo/CH_pretrained.pth --pre_hm --tracking  --same_aug_pre --image_blur_aug --not_max_crop --data_dir=/scratch/scorpio/yixu/rawdata/MOT20/ --epochs=39
+python -m torch.distributed.launch --nproc_per_node=2 --use_env ./training/transcenter/main_mot20_tracking.py --output_dir=./output/whole_MOT20_from_CH --batch_size=2 --num_workers=20 --resume=./model_zoo/CH_pretrained.pth --pre_hm --tracking  --same_aug_pre --image_blur_aug --not_max_crop --data_dir=PathToMOT20dataset
 ```
 
 Tips:
-1) If you encounter *RuntimeError: cuDNN error: CUDNN_STATUS_INTERNAL_ERROR* in some GPUs, please try to set *torch.backends.cudnn.benchmark=False*.
-2) The number of epochs is by default 50, the listed numbers of epochs are where models having best eval scores (det mAP).
-3) Depending on your environment and GPUs, you might experience MOTA jitter in your final models.
-4) You may see training noise during fine-tuning, especially for MOT17/MOT20 training with well-pretrained models. You can slow down the training rate by 1/10, apply early stopping, increase batch size with GPUs having more memory.  
-5) If you have GPU memory issues, try to lower the batch size for training and evaluation in main_****.py, freeze the resnet backbone and use our coco/CH pretrained models.
+1) If you encounter *RuntimeError: cuDNN error: CUDNN_STATUS_INTERNAL_ERROR* in some GPUs, please try to set *torch.backends.cudnn.benchmark=False*. In most of the cases, setting *torch.backends.cudnn.benchmark=True* is more memory-efficient.
+2) Depending on your environment and GPUs, you might experience MOTA jitter in your final models.
+3) You may see training noise during fine-tuning, especially for MOT17/MOT20 training with well-pretrained models. You can slow down the training rate by 1/10, apply early stopping, increase batch size with GPUs having more memory.  
+4) If you have GPU memory issues, try to lower the batch size for training and evaluation in main_****.py, freeze the resnet backbone and use our coco/CH pretrained models.
 
 
 ## Tracking

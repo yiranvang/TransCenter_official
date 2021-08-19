@@ -56,7 +56,7 @@ from datasets.transcenter_dataset.coco import COCO
 
 # xyh #
 from torch.utils.tensorboard import SummaryWriter
-torch.backends.cudnn.benchmark=False
+torch.backends.cudnn.benchmark=True
 
 
 def get_args_parser():
