@@ -136,9 +136,7 @@ def get_args_parser():
 
     # dataset parameters
     parser.add_argument('--dataset_file', default='mot20')
-    parser.add_argument('--data_dir', default='/scratch/scorpio/yixu/rawdata/MOT20/', type=str)
-    # parser.add_argument('--data_dir', default='/local_scratch/data/perception/yixu/rawdata/MOT17/', type=str)
-    parser.add_argument('--data_dir_ch', default='/scratch2/scorpio/yixu/crowd_human/', type=str)
+    parser.add_argument('--data_dir', default='YourPathToMOT20', type=str)
 
     parser.add_argument('--coco_panargsic_path', type=str)
     parser.add_argument('--remove_difficult', action='store_true')

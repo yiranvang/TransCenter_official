@@ -39,7 +39,7 @@ import numpy as np
 import json
 import cv2
 
-DATA_PATH = '/scratch2/scorpio/yixu/crowd_human/'
+DATA_PATH = 'CrowdHumanPath'
 OUT_PATH = DATA_PATH + 'annotations/'
 SPLITS = ['val', 'train']
 DEBUG = False
