@@ -192,12 +192,12 @@ Using Public detections:
 - MOT17:
 ```
 cd TransCenter_official
-python ./tracking/transcenter/mot17_pub.py --data_dir=/scratch/scorpio/yixu/rawdata/MOT17/
+python ./tracking/transcenter/mot17_pub.py --data_dir=YourMOT17Path
 ```
 - MOT20:
 ```
 cd TransCenter_official
-python ./tracking/transcenter/mot20_pub.py --data_dir=/scratch/scorpio/yixu/rawdata/MOT20/
+python ./tracking/transcenter/mot20_pub.py --data_dir=YourMOT20Path
 ```
 
 Using Private detections:
@@ -205,12 +205,12 @@ Using Private detections:
 - MOT17:
 ```
 cd TransCenter_official
-python ./tracking/transcenter/mot17_private.py --data_dir=/scratch/scorpio/yixu/rawdata/MOT17/
+python ./tracking/transcenter/mot17_private.py --data_dir=YourMOT17Path
 ```
 - MOT20:
 ```
 cd TransCenter_official
-python ./tracking/transcenter/mot20_private.py --data_dir=/scratch/scorpio/yixu/rawdata/MOT20/
+python ./tracking/transcenter/mot20_private.py --data_dir=YourMOT20Path
 ```
 
 Notes:
