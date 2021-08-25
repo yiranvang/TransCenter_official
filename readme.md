@@ -215,7 +215,7 @@ python ./tracking/transcenter/mot20_private.py --data_dir=/scratch/scorpio/yixu/
 ```
 
 Notes:
-1) we recently corrected an image loading bug during reading certain images having image ratio close to 1 (in MOT20) in the code, bringing better performance in MOT20.
+1) we recently corrected an image loading bug during reading certain images having an image ratio close to 1 (in MOT20) in the code, bringing better performance in MOT20.
 2) you can test your model by changing the model_path inside *mot17[20]_private[pub].py*.
 
 ## MOTChallenge Results
