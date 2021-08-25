@@ -9,8 +9,7 @@
 </div>
 
 ## Bibtex
-If you find this code useful, please star the project and consider citing:
-
+**If you find this code useful, please star the project and consider citing:** <br />
 ```
 @misc{xu2021transcenter,
       title={TransCenter: Transformers with Dense Queries for Multiple-Object Tracking}, 
@@ -251,7 +250,7 @@ MOT20 private detections:
 
 **Note:** 
 - The results can be slightly different depending on the running environment.
-- Knowing the work is under review, we might keep updating the results in the near future.
+- We might keep updating the results in the near future.
 
 ## Acknowledgement
 
